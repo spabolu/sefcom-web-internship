@@ -2,20 +2,24 @@
 const targetNode = document.getElementById('root');
 
 // Callback function to execute when mutations are observed
-const callback = function(mutationsList, observer) {
-    // Use traditional 'for loops' for IE 11
-    for(const mutation of mutationsList) {
-        if (mutation.type === 'childList') {
-            console.log('A child node has been added or removed.');
-        }
-        else if (mutation.type === 'attributes') {
-            console.log('The ' + mutation.attributeName + ' attribute was modified.');
-        }
+const callback = function (mutationsList, observer) {
+  // Use traditional 'for loops' for IE 11
+  for (const mutation of mutationsList) {
+    if (mutation.type === 'childList') {
+      //console.log(mutation.addedNodes[0].toString() + "s");
+      if (mutation.addedNodes[0].innerText == "Save") {
+        console.log("Your browser has Pinterest extension installed.")
+      }
+      //console.log('A child node has been added or removed.');
     }
+    else if (mutation.type === 'attributes') {
+      //console.log('The ' + mutation.attributeName + ' attribute was modified.');
+    }
+  }
 };
 
 // Create an observer instance linked to the callback function
 const observer = new MutationObserver(callback);
 
 // Start observing the target node for configured mutations
-observer.observe(targetNode, {subtree: true, childList: true});
+observer.observe(targetNode, { subtree: true, childList: true });
