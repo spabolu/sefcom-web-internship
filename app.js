@@ -5,6 +5,7 @@ const targetNode = document.getElementById('root');
 const callback = function (mutationsList, observer) {
   // Use traditional 'for loops' for IE 11
   for (const mutation of mutationsList) {
+    console.log(mutation);
     if (mutation.type === 'childList') {
       //console.log(mutation.addedNodes[0]);
       if (mutation.addedNodes[0].tagName == 'SPAN' && mutation.addedNodes[0].innerText == "Save") {
