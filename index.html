@@ -1,28 +1,58 @@
 <!DOCTYPE html>
 <html lang="en">
-   <head>
-      <meta charset="UTF-8">
-      <meta http-equiv="X-UA-Compatible" content="IE=edge">
-      <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <title>Fingerprint-ability Checker</title>
-   </head>
-   <body id="root">
-      <script src="./app.js"></script>
-      <img
-         src="https://images.unsplash.com/photo-1626598810530-56a6ddcd61f2?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1051&q=80"
-         alt="" width="512px">
-      <br>
-      <br>
-      <form>
-         <label for="w3review">Review of W3Schools:</label>
-         <textarea id="w3review" name="w3review" rows="4" cols="50">
-         At w3schools.com you will learn how to make a website. They offer free tutorials in all web development technologies.
-         </textarea>
-      </form>
-      <br>
-      <h1 id="drump">Donald Trump</h1>
 
-      <br>
-      <iframe width="560" height="315" src="https://www.youtube.com/embed/_RQnJ0CTTnU" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-   </body>
+<head>
+   <meta charset="UTF-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Fingerprint-ability Checker</title>
+   <link rel="stylesheet" href="style.css">
+</head>
+
+<body id="root">
+   <script>
+      function initFingerprintJS() {
+         // Initialize an agent at application startup.
+         const fpPromise = FingerprintJS.load()
+
+         // Get the visitor identifier when you need it.
+         fpPromise
+            .then(fp => fp.get())
+            .then(result => {
+               // This is the visitor identifier:
+               const visitorId = result.visitorId
+
+               let ID = "Unique hased identifer from fingerprint.js for this broswer is " + visitorId;
+               console.log(
+                  "%c" + ID,
+                  "display: inline-block ; border: 3px solid red ; border-radius: 7px ; " +
+                  "padding: 10px ; margin: 20px ;"
+               );
+            })
+      }
+   </script>
+
+   <script src="./app.js"></script>
+   <img
+      src="https://images.unsplash.com/photo-1626598810530-56a6ddcd61f2?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1051&q=80"
+      alt="" width="512px">
+   <br>
+   <br>
+   <form class="box">
+      <label for="w3review">Enter text here: </label>
+      <textarea id="w3review" name="w3review" rows="3" cols="50">this is filler text in a text field.</textarea>
+   </form>
+   <br>
+   <h1 id="drump">Donald Trump</h1>
+
+   <br>
+   <iframe width="560" height="315" src="https://www.youtube.com/embed/PoN05pqAtz4" title="YouTube video player"
+      frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+      allowfullscreen></iframe>
+
+
+   <script async src="//cdn.jsdelivr.net/npm/@fingerprintjs/fingerprintjs@3/dist/fp.min.js"
+      onload="initFingerprintJS()"></script>
+</body>
+
 </html>

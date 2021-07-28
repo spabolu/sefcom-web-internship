@@ -1,20 +1,24 @@
-// Select the node that will be observed for mutations
 const targetNode = document.getElementById('root');
+let arrExt = []
 
 // Callback function to execute when mutations are observed
 const callback = function (mutationsList, observer) {
-  // Use traditional 'for loops' for IE 11
+
   for (const mutation of mutationsList) {
-    console.log(mutation);
+    //console.log(mutation);
     if (mutation.type === 'childList') {
-      //console.log(mutation.addedNodes[0]);
+      // console.log(mutation.addedNodes[0].innerText);
       if (mutation.addedNodes[0].tagName == 'SPAN' && mutation.addedNodes[0].innerText == "Save") {
         console.log("Your browser has Pinterest extension installed.")
+        arrExt.push(" Pinterest");
       }
 
-      if (mutation.addedNodes[0].innerText == "Drumpf") {
-        console.log("Your browser has Drumpfinator extension installed.")
+      let drumpf = document.querySelector('drump');
+      if (mutation.addedNodes[0].innerText == "Donald Trump" && typeof (drumpf) != 'undefined') {
+        console.log("Your browser has Drumpfinator extension installed.");
+        arrExt.push(" Drumpfinator");
       }
+
       console.log('A child node has been added or removed.');
     }
     else if (mutation.type === 'attributes') {
@@ -35,20 +39,23 @@ setTimeout(function () {
   var elementExists = document.getElementsByClassName("cGcvT");
   if (typeof (grammarly) != 'undefined' && elementExists != null) {
     console.log("Your browser has Grammarly extension installed.");
+    arrExt.push(" Grammarly");
   }
 }, 100);
 
 setTimeout(function () {
-  var drumpf = document.querySelector('drump'); 
-  if (typeof (drumpf) != 'undefined') {
-    console.log("Your browser has Drumpf extension installed.");
-  }
-}, 100);
-
-setTimeout(function () {
-  var ytd = document.querySelector('controller'); 
+  var ytd = document.querySelector('controller');
   if (typeof (ytd) != 'undefined') {
     console.log("Your browser has Video Speed Controller extension installed.");
+    arrExt.push(" Video Speed Controller");
   }
 }, 100);
 
+setTimeout(function () {
+  let extText = "This browser has the following Chrome extensions installed: " + arrExt;
+  console.log(
+    "%c" + extText,
+    "display: inline-block ; border: 3px solid red ; border-radius: 7px ; " +
+    "padding: 10px ; margin: 20px ;"
+  );
+}, 2000)
